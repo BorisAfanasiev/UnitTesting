@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ModulesAfanasiev.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModulesAfanasiev.h" />

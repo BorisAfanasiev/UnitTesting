@@ -1,19 +1,86 @@
 #include <iostream>
-#include <Windows.h>			//ukr language + Beep()
+#include <Windows.h>			//ukr language + Beep() //rem later
 #include <fstream>
 #include <math.h>				//fabs() for approximation comparsion
-#include "ModulesAfanasievPublicMembers.h"
+#include "..\prj\ModulesAfanasiev.h"
 
-
-void unitTesting()
+void ModulesAfanasievTest()
 {
+	std::ofstream testResult{ "..\\TestSuite\\TestResults.txt" };		//File to store test results.
+	try
+	{	//Test Case: #0101
+		ClassLab6_Afanasiev constructorDefault{};
+		if (constructorDefault.getX() == 0.00 && constructorDefault.getY() == 0.0)
+		{
+			testResult << "#0101 - Passed!" << std::endl;
+		}
+		else { throw std::runtime_error("#0101 - Failed!"); }
+	}
+	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
 
+	try
+	{	//Test Case: #0102
+		ClassLab6_Afanasiev constructorSingleParameter{ 1.234 };
+		if (constructorSingleParameter.getX() == 1.234)
+		{
+			testResult << "#0102 - Passed!" << std::endl;
+		}
+		else { throw std::runtime_error("#0102 - Failed!"); }
+	}
+	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
+
+	try
+	{	//Test Case: #0103
+		ClassLab6_Afanasiev constructorBouthParameters{ 1.234, 9.876 };
+		if (constructorBouthParameters.getX() == 1.234 && constructorBouthParameters.getY() == 9.876)
+		{
+			testResult << "#0103 - Passed!" << std::endl;
+		}
+		else { throw std::runtime_error("#0103 - Failed!"); }
+	}
+	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
+
+	try
+	{	//Test Case: #0104
+		ClassLab6_Afanasiev methodGetArea{ 1.234, 9.876 };
+		double epsilon{ 0.001 };		//Variable for approximation comparison.
+		if (fabs(methodGetArea.getArea() - 12.187) < epsilon)
+		{
+			testResult << "#0106 - Passed!" << std::endl;
+		}
+		else { throw std::runtime_error("#0106 - Failed!"); }
+	}
+	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
+
+	try
+	{	//Test Case: #0105
+		ClassLab6_Afanasiev methodSetX{ 0.0, 0.0 };
+		methodSetX.setX(1.234);
+		if (methodSetX.getX() == 1.234)
+		{
+			testResult << "#0106 - Passed!" << std::endl;
+		}
+		else { throw std::runtime_error("#0106 - Failed!"); }
+	}
+	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
+
+	try
+	{	//Test Case: #0106
+		ClassLab6_Afanasiev methodSetY{ 0.0, 0.0 };
+		methodSetY.setY(9.876);
+		if (methodSetY.getY() == 9.876)
+		{
+			testResult << "#0106 - Passed!" << std::endl;
+		}
+		else { throw std::runtime_error("#0106 - Failed!"); }
+	}
+	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
 }
 
 int main()
 {
 	SetConsoleCP(1251);
-	SetConsoleOutputCP(1251);
+	SetConsoleOutputCP(1251);	//babushka, vodka, martoshka
 
 	//Testing placement of main.cpp
 	std::ifstream mainCPPDirectoryTest{ "..\\..\\Lab6\\prj\\main.cpp" };		//Directory to look for main.cpp.
@@ -27,99 +94,13 @@ int main()
 		return -1;
 	}
 
-	//Testing class "ClassLab6_Afanasiev"
-	std::ofstream testResult{ "..\\TestSuite\\TestResults.txt" };		//File to store test results.
 	try
-	{	//Test Case: #0101
-		ClassLab6_Afanasiev constructorDefault{};
-		if (constructorDefault.m_x == 0.00 && constructorDefault.m_y == 0.0)
-		{
-			testResult << "#0101 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0101 - Failed!"); }
+	{	//Testing class "ClassLab6_Afanasiev"
+		std::cout << "Tests initiated...";
+		ModulesAfanasievTest();
+		std::cout << "Tests done!";
 	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
+	catch (...) { std::cerr << "Error: Exception fallthrough"; }
 
-	try
-	{	//Test Case: #0102
-		ClassLab6_Afanasiev constructorSingleParameter{ 1.234 };
-		if (constructorSingleParameter.m_x == 1.234)
-		{
-			testResult << "#0102 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0102 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-
-	try
-	{	//Test Case: #0103
-		ClassLab6_Afanasiev constructorBouthParameters{ 1.234, 9.876 };
-		if (constructorBouthParameters.m_x == 1.234 && constructorBouthParameters.m_y == 9.876)
-		{
-			testResult << "#0103 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0103 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-
-	try
-	{	//Test Case: #0104
-		ClassLab6_Afanasiev methodGetX{ 1.234, 0.0 };
-		if (methodGetX.m_x == 1.234)
-		{
-			testResult << "#0104 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0104 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-
-	try
-	{	//Test Case: #0105
-		ClassLab6_Afanasiev methodGetY{ 0.0, 9.876 };
-		if (methodGetY.m_y == 9.876)
-		{
-			testResult << "#0105 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0105 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-
-	try
-	{	//Test Case: #0106
-		ClassLab6_Afanasiev methodGetArea{ 1.234, 9.876 };
-		double epsilon{ 0.001 };		//Variable for approximation comparison.
-		if (fabs(methodGetArea.getArea() - 12.187) < epsilon)
-		{
-			testResult << "#0106 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0106 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-	
-	try
-	{	//Test Case: #0107
-		ClassLab6_Afanasiev methodSetX{ 0.0, 0.0 };
-		methodSetX.setX(1.234);
-		if (methodSetX.m_x == 1.234)
-		{
-			testResult << "#0106 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0106 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-	
-	try
-	{	//Test Case: #0108
-		ClassLab6_Afanasiev methodSetY{ 0.0, 0.0 };
-		methodSetY.setY(9.876);
-		if (methodSetY.m_x == 9.876)
-		{
-			testResult << "#0106 - Passed!" << std::endl;
-		}
-		else { throw std::runtime_error("#0106 - Failed!"); }
-	}
-	catch (const std::exception& exception) { testResult << exception.what() << std::endl; }
-
-	std::cout << "Testing finished!";
 	return 0;
 }

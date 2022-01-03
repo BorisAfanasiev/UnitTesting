@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ModulesAfanasievPublicMembers.h">
+    <ClInclude Include="..\prj\ModulesAfanasiev.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

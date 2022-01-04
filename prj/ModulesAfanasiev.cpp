@@ -1,17 +1,21 @@
 #include "ModulesAfanasiev.h"
 
-double ClassLab6_Afanasiev::getX() const
+const double ClassLab6_Afanasiev::getX() const
 {
 	return m_x;
 }
 
-double ClassLab6_Afanasiev::getY() const
+const double ClassLab6_Afanasiev::getY() const
 {
 	return m_y;
 }
 
-double ClassLab6_Afanasiev::getArea() const
+const double ClassLab6_Afanasiev::getArea() const
 {
+	if (m_x <= 0 || m_y <= 0)
+	{
+		return 0;
+	}
 	return m_x * m_y;
 }
 

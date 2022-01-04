@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClCompile Include="..\prj\ModulesAfanasiev.cpp" />
     <ClCompile Include="Teacher.cpp" />
+    <ClCompile Include="TeacherV2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\prj\ModulesAfanasiev.h" />
-    <ClInclude Include="refact.h" />
+    <ClInclude Include="TestClass.h" />
+    <ClInclude Include="TestSuite.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
